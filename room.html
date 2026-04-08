@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Our Rooms - Lumeria</title>
+<link rel="stylesheet" href="room.css">
+</head>
+
+<body>
+
+<h1 class="title">Select Your Room</h1>
+
+<div class="rooms-container">
+
+    <!-- SINGLE ROOMS -->
+    <h2>Single Rooms</h2>
+
+    <div class="room-grid">
+
+        <div class="room-card">
+            <img src="single1.jpg">
+            <h3>Single Deluxe</h3>
+            <p>₹4,000 / night</p>
+            <button onclick="selectRoom('Single Deluxe', 4000)">Select</button>
+        </div>
+
+        <div class="room-card">
+            <img src="single2.jpg">
+            <h3>Single Premium</h3>
+            <p>₹5,500 / night</p>
+            <button onclick="selectRoom('Single Premium', 5500)">Select</button>
+        </div>
+
+        <div class="room-card">
+            <img src="single3.jpg">
+            <h3>Single Luxury</h3>
+            <p>₹6,500 / night</p>
+            <button onclick="selectRoom('Single Luxury' , 6500)">Select</button>
+        </div>
+
+    </div>
+
+    <!-- DOUBLE ROOMS -->
+    <h2>Double Rooms</h2>
+
+    <div class="room-grid">
+
+        <div class="room-card">
+            <img src="double1.jpg">
+            <h3>Double Deluxe</h3>
+            <p>₹7,500 / night</p>
+            <button onclick="selectRoom('Double Deluxe', 7500)">Select</button>
+        </div>
+
+        <div class="room-card">
+            <img src="double2.jpg">
+            <h3>Double Premium</h3>
+            <p>₹9,000 / night</p>
+            <button onclick="selectRoom('Double Premium', 9000)">Select</button>
+        </div>
+
+        <div class="room-card">
+            <img src="double3.jpg">
+            <h3>Double Luxury</h3>
+            <p>₹10,500 / night</p>
+            <button onclick="selectRoom('Double Luxury' , 10500)">Select</button>
+        </div>
+
+    </div>
+
+    <!-- VILLAS -->
+    <h2>Villas</h2>
+
+    <div class="room-grid">
+
+        <div class="room-card">
+            <img src="villa1.jpg">
+            <h3>Beach Villa</h3>
+            <p>₹30,000/ night</p>
+            <button onclick="selectRoom('Beach Villa', 30000)">Select</button>
+        </div>
+
+        <div class="room-card">
+            <img src="villa2.jpg">
+            <h3>Pool Villa</h3>
+            <p>₹40,000 / night</p>
+            <button onclick="selectRoom('Pool Villa', 40000)">Select</button>
+        </div>
+
+        <div class="room-card">
+            <img src="villa3.jpg">
+            <h3>Luxury Villa</h3>
+            <p>₹40,000 / night</p>
+            <button onclick="selectRoom('Luxury Villa' , 40000)">Select</button>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* 🔒 BLOCK PAGE IF NOT LOGGED IN */
+let isLoggedIn = localStorage.getItem("isLoggedIn");
+
+if (isLoggedIn !== "true") {
+    alert("Please login first!");
+    window.location.href = "login.html";
+}
+
+/* SELECT ROOM */
+function selectRoom(room, price){
+
+    let isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn !== "true") {
+        alert("Please login first to select room!");
+        window.location.href = "login.html";
+        return;
+    }
+
+    localStorage.setItem("selectedRoom", room);
+    localStorage.setItem("roomPrice", price);
+
+    alert(room + " selected ✅");
+
+    window.location.href = "hotel.html";
+}
+
+</script>
+
+</body>
+</html>

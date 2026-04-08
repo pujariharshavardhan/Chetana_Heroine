@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dining</title>
+<style>
+body {
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: url("hotel.jpg") center/cover no-repeat;
+}
+
+/* Dark overlay */
+.overlay {
+    background: rgba(0,0,0,0.6);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Grid */
+.grid {
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:40px;
+}
+
+/* Cards */
+.card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(12px);
+    border-radius:20px;
+    padding:40px 30px;
+    text-align:center;
+    color:white;
+    font-size:22px;
+    font-weight:600;
+    cursor:pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* Hover effect */
+.card:hover {
+    transform: translateY(-10px) scale(1.05);
+    background: linear-gradient(135deg, #c8a97e, #e0c3a3);
+    color:black;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+<div class="grid">
+
+<div class="card" onclick="goToBooking('Breakfast')">
+<h2>Breakfast</h2>
+</div>
+
+<div class="card" onclick="goToBooking('All Day Dining')">
+<h2>Lunch & Dinner</h2>
+</div>
+
+<div class="card" onclick="goToBooking('Late Night')">
+<h2>Late Night</h2>
+</div>
+
+
+</div>
+</div>
+
+<script>
+let isLoggedIn = localStorage.getItem("isLoggedIn");
+
+if (isLoggedIn !== "true") {
+    alert("Please login first!");
+    window.location.href = "login.html";
+}
+function goToBooking(type){
+    localStorage.setItem("mealType", type);
+    window.location.href = "table.html";
+}
+
+</script>
+
+</body>
+</html>

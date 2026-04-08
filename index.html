@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lumeria Luxury Hotels</title>
+<link rel="stylesheet" href="hotel.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="navbar">
+
+    <!-- LEFT: LOGO -->
+    <div class="brand">
+        <img src="logo.png" alt="St Regis Logo">
+        <span class="brand-text">LUMERIA</span>
+    </div>
+
+
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+<nav class="main-nav">
+    <div class="dropdown">
+        <a href="#" id="locationsBtn">LOCATIONS ▾</a>
+
+        <div class="dropdown-menu" id="locationsMenu">
+            <a href="#">LOCATIONS</a>
+            <a href="#">Mumbai</a>
+            <a href="#">Delhi</a>
+            <a href="#">Chennai</a>
+            <a href="#">Bangalore</a>
+            <a href="#">Hyderabad</a>
+        </div>
+    </div>
+
+    <a href="facilities.html" target="_blank">FACILITIES ▾</a>
+    <a href="room.html" target="_blank">ROOMS</a>
+</nav>
+<!-- RIGHT: SIGN IN + BONVOY + BUTTON -->
+<div class="right-nav">
+
+    <span id="userDisplay"></span>
+
+
+
+    <a href="login.html" id="loginBtn">👤 SIGN IN</a>
+
+    <button id="logoutBtn" onclick="logoutUser()" style="display:none;">
+        LOGOUT
+    </button>
+   
+  <button type="button" class="reserve-btn" onclick="bookNow()">
+    RESERVE
+</button>
+
+</div>
+
+</header>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero">
+    <img id="heroImage" src="hotel.jpg" alt="Hotel Image">
+
+    <button class="arrow left" onclick="prevImage()">&#10094;</button>
+    <button class="arrow right" onclick="nextImage()">&#10095;</button>
+
+    <div class="hero-text">
+        <h3>LUMERIA Maldives Vommuli Resort</h3>
+    </div>
+</section>
+<!-- EXPLORE HOTELS BAR -->
+<section class="explore-wrapper">
+
+    <div class="explore-box">
+
+        <div class="explore-left">
+            <h2>Explore<br>Hotels</h2>
+        </div>
+
+        <div class="explore-right">
+
+            <div class="field">
+                <label>DESTINATION</label>
+                <input type="text" id="destinationInput" placeholder="WHAT WILL YOU DISCOVER?">
+            </div>
+
+
+            <div class="field">
+                <label>DATES</label>
+                <input type="date" id="checkin">
+                <input type="date" id="checkout">
+            </div>
+
+            <div class="field">
+           <label>ROOMS & GUESTS</label>
+
+    <div class="room-selector" onclick="toggleRoomBox()">
+        <span id="roomSummary">1 Room, 1 Adult, 0 Children</span>
+    </div>
+
+    <div class="room-box" id="roomBox">
+
+        <div class="room-row">
+            <span>Rooms</span>
+            <button type="button" onclick="changeValue('rooms', -1)"></button>
+            <span id="roomsCount">1</span>
+            <button  type="button"onclick="changeValue('rooms', 1)">+</button>
+        </div>
+
+        <div class="room-row">
+            <span>Adults</span>
+            <button type="button"onclick="changeValue('adults', -1)">-</button>
+            <span id="adultsCount">1</span>
+            <button type="button" onclick="changeValue('adults', 1)">+</button>
+        </div>
+
+        <div class="room-row">
+            <span>Children</span>
+            <button type="button" onclick="changeValue('children', -1)">-</button>
+            <span id="childrenCount">0</span>
+            <button type="button" onclick="changeValue('children', 1)">+</button>
+        </div>
+
+        <button class="apply-btn" onclick="applyRooms()">Apply</button>
+
+    </div>
+</div>
+
+    <button type="button" class="reserve-btn big" onclick="bookNow()">
+    RESERVE NOW
+</button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section class="luxury-section">
+
+    <h2 class="luxury-title">Luxury Experiences</h2>
+
+    <!-- Luxury Rooms -->
+    <div class="luxury-row">
+        <div class="luxury-text">
+            <span>Luxury Rooms</span>
+            <h3>Where Comfort Meets Elegance</h3>
+            <p>
+                Experience refined luxury with spacious rooms,
+                premium interiors, and world-class hospitality.
+            </p>
+           <a href="rooms.html" onclick="checkLoginRoom()">SELECT YOUR ROOM</a>
+        </div>
+
+        <div class="luxury-img">
+            <img src="room1.jpg" alt="Luxury Rooms" onclick="checkLoginRoom()">
+        </div>
+    </div>
+
+    <!-- Fine Dining -->
+    <div class="luxury-row reverse">
+        <div class="luxury-text">
+            <span>Fine Dining</span>
+            <h3>A Taste of Culinary Excellence</h3>
+            <p>
+                Savor exquisite dishes crafted by expert chefs
+                using the finest ingredients from around the world.
+            </p>
+            <a href="#" onclick="checkLoginForDining()">RESERVE TABLE</a>
+        </div>
+
+        <div class="luxury-img">
+          <img src="room2.jpg" onclick="checkLoginForDining()">
+        </div>
+    </div>
+
+    <!-- Spa & Wellness -->
+    <div class="luxury-row">
+        <div class="luxury-text">
+            <span>Spa & Wellness</span>
+            <h3>Relax. Refresh. Rejuvenate.</h3>
+            <p>
+                Unwind with therapeutic spa treatments designed
+                to restore balance and inner peace.
+            </p>
+            <a href="#" onclick="openWellness()">REGISTER NOW</a>
+        </div>
+
+        <div class="luxury-img">
+            <img src="room3.jpg" alt="Spa & Wellness" onclick="openWellness()">
+        </div>
+    </div>
+
+</section>
+
+<script src="hotel.js"></script>
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- LEFT LINKS -->
+         <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="#">Home</a>
+            <a href="#">Rooms</a>
+            <a href="facilities.html">Facilities</a>
+            <a href="dining.html">Dining</a>
+            <a href="wellness.html">Wellness</a>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="footer-col">
+            <h4>Contact Us</h4>
+            <p>📍India</p>
+            <p>📞 +91 98765 43210</p>
+            <p>✉ support@lumeria.com</p>
+        </div>
+
+        <!-- NEWSLETTER -->
+        <div class="footer-col">
+            <h4>Stay Updated</h4>
+            <p>Subscribe for offers & updates</p>
+            <input type="email" placeholder="Enter your email">
+            <button>Subscribe</button>
+
+            
+        </div>
+
+    </div>
+<div class="social-icons">
+
+    <a href="https://www.instagram.com/" target="_blank">
+        <i class="fab fa-instagram"></i>
+    </a>
+
+    <a href="https://www.facebook.com/" target="_blank">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+    <a href="https://twitter.com/" target="_blank">
+        <i class="fab fa-x-twitter"></i>
+    </a>
+
+</div>
+    <!-- BOTTOM BAR -->
+    <div class="footer-bottom">
+        <p>© 2026 Lumeria Hotels. All Rights Reserved.</p>
+    </div>
+
+</footer>
+</body>
+</html>

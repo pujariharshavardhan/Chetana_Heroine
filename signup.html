@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Create Account</title>
+<link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="login-box">
+        <h1>LUMERIA</h1>
+        <h2>Create Account</h2>
+
+        <form onsubmit="registerUser(event)">
+
+            <input type="text" id="name" placeholder="Full Name" required>
+
+            <input type="email" id="email" placeholder="Email Address" required>
+
+            <input type="tel" id="phone" placeholder="Phone Number" required>
+
+            <input type="text" id="username" placeholder="Username" required>
+
+            <input type="password" id="password" placeholder="Password" required>
+
+            <button type="submit">Sign Up</button>
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+
+function registerUser(e){
+    e.preventDefault();
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let username = document.getElementById("username").value.trim();
+    let password = document.getElementById("password").value;
+
+    // VALIDATIONS
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let phoneRegex = /^[0-9]{10}$/;
+    let passwordRegex = /^(?=.*[A-Z])(?=.*[\W_]).{8,}$/;
+
+    if (!emailRegex.test(email)) {
+        alert("Enter valid email!");
+        return;
+    }
+
+    if (!phoneRegex.test(phone)) {
+        alert("Phone must be 10 digits!");
+        return;
+    }
+
+    if (!passwordRegex.test(password)) {
+        alert("Password must be 8+ chars, 1 uppercase & 1 special character!");
+        return;
+    }
+
+    // GET EXISTING USERS
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    // CHECK USER EXISTS
+    let userExists = users.find(u => u.username === username);
+
+    if (userExists) {
+        alert("Username already exists!");
+        return;
+    }
+
+    // SAVE USER
+    users.push({
+        name,
+        email,
+        phone,
+        username,
+        password
+    });
+
+    localStorage.setItem("users", JSON.stringify(users));
+
+    alert("Account Created Successfully ✅");
+
+    window.close(); // closes tab
+}
+
+</script>
+
+</body>
+</html>

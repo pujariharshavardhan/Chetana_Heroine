@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dining Receipt</title>
+<style>
+body {
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: url("hotel.jpg") center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* Glass card */
+.card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    padding:40px;
+    border-radius:20px;
+    width:420px;
+    color:white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Title */
+.card h2 {
+    text-align:center;
+    margin-bottom:20px;
+    font-size:26px;
+    letter-spacing:1px;
+}
+
+/* Divider line */
+.divider {
+    height:1px;
+    background: rgba(255,255,255,0.3);
+    margin:15px 0;
+}
+
+/* Text styling */
+.card p {
+    margin:8px 0;
+    font-size:16px;
+}
+
+.card b {
+    color:#ffd9a0;
+}
+
+/* Button */
+button {
+    width:100%;
+    margin-top:20px;
+    padding:12px;
+    background: linear-gradient(135deg, #c8a97e, #e0c3a3);
+    border:none;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>🍽️ Reservation Confirmed</h2>
+
+<p><b>Name:</b> <span id="name"></span></p>
+<p><b>Meal:</b> <span id="meal"></span></p>
+<p><b>Date:</b> <span id="date"></span></p>
+<p><b>Guests:</b> <span id="guests"></span></p>
+
+<p><b>Confirmation No:</b> <span id="confirm"></span></p>
+
+<button onclick="goHome()">Back to Home</button>
+
+</div>
+
+<script>
+
+let isLoggedIn = localStorage.getItem("isLoggedIn");
+
+if (isLoggedIn !== "true") {
+    alert("Please login first!");
+    window.location.href = "login.html";
+}
+
+let data = JSON.parse(localStorage.getItem("tableBooking"));
+
+document.getElementById("name").innerText = data.user;
+document.getElementById("meal").innerText = data.mealType;
+document.getElementById("date").innerText = data.date;
+document.getElementById("guests").innerText = data.guests;
+
+document.getElementById("confirm").innerText = data.confirmation;
+
+function goHome(){
+    window.location.href = "hotel.html";
+}
+
+</script>
+
+</body>
+</html>

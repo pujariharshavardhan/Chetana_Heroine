@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Book Table</title>
+<style>
+body {
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: url("hotel.jpg") center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* Glass card */
+.box {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    padding:40px;
+    border-radius:20px;
+    width:350px;
+    color:white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+h2 {
+    text-align:center;
+    margin-bottom:20px;
+}
+
+/* Inputs */
+input, select {
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border:none;
+    border-radius:8px;
+    outline:none;
+}
+
+/* Button */
+button {
+    width:100%;
+    padding:12px;
+    background: linear-gradient(135deg, #c8a97e, #e0c3a3);
+    border:none;
+    color:black;
+    font-weight:bold;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+
+
+<div class="box">
+<h2>Reserve Table</h2>
+
+<label>📅 Date</label>
+<input type="date" id="date"><br><br>
+
+<label>👥 Guests</label>
+<input type="number" id="guests" value="2"><br><br>
+
+
+</select>
+
+<button onclick="confirmTable()">Confirm Reservation</button>
+
+</div>
+
+<script>
+let isLoggedIn = localStorage.getItem("isLoggedIn");
+
+if (isLoggedIn !== "true") {
+    alert("Please login first!");
+    window.location.href = "login.html";
+}
+
+function confirmTable(){
+
+let booking = {
+    user: localStorage.getItem("loggedUser"),
+    mealType: localStorage.getItem("mealType"),
+    date: document.getElementById("date").value,
+    guests: document.getElementById("guests").value,
+    
+    confirmation: Math.floor(Math.random()*100000)
+};
+
+localStorage.setItem("tableBooking", JSON.stringify(booking));
+
+window.location.href = "receipt.html";
+}
+</script>
+
+</body>
+</html>

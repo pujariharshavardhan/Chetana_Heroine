@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>City Hotels</title>
+</head>
+<body>
+
+<h1 id="cityTitle"></h1>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const city = params.get("name");
+
+document.getElementById("cityTitle").innerText = "Hotels in " + city;
+</script>
+
+</body>
+</html>

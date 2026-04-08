@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Confirm Booking</title>
+<link rel="stylesheet" href="booking.css">
+</head>
+
+<body>
+
+<div class="booking-container">
+
+    <div class="booking-card">
+
+        <h1>Review Your Stay</h1>
+
+        <div id="bookingDetails" class="details"></div>
+
+        <button onclick="confirmBooking()">Confirm Booking</button>
+
+    </div>
+
+</div>
+<script>
+let booking = JSON.parse(localStorage.getItem("booking"));
+
+if (booking) {
+    let details = `
+    <p><strong>Name:</strong> ${booking.user}</p>
+    <p><strong>Destination:</strong> ${booking.destination}</p>
+    <p><strong>Check-in:</strong> ${booking.checkin}</p>
+    <p><strong>Check-out:</strong> ${booking.checkout}</p>
+    <p><strong>Room:</strong> ${booking.roomType}</p>
+    `;
+    document.querySelector(".details").innerHTML += `
+    <p><strong>Price per Room:</strong> ₹${booking.price}</p>
+    <p><strong>Total Cost:</strong> ₹${booking.total}</p>
+`;
+
+    document.getElementById("bookingDetails").innerHTML = details;
+
+} else {
+    document.getElementById("bookingDetails").innerHTML =
+        "<p>No booking data found</p>";
+}
+
+function confirmBooking(){
+    window.location.href = "booking.html";
+}
+</script>
+
+</body>
+</html>

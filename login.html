@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lumeria Login</title>
+<link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="login-box">
+        <h1>LUMERIA</h1>
+        <h2>Welcome Back</h2>
+
+        <form onsubmit="loginUser(event)">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p class="signup-text">New here? <a href="signup.html">Create Account</a></p>
+    </div>
+
+</div>
+
+
+    <script>
+function loginUser(e){
+    e.preventDefault();
+
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    let validUser = users.find(
+        user => user.username === username && user.password === password
+    );
+
+    if (!validUser) {
+        alert("Account not found! Please create account first.");
+        return;
+    }
+
+    // LOGIN SUCCESS
+    localStorage.setItem("loggedUser", username);
+    localStorage.setItem("isLoggedIn", "true");
+
+    alert("Login Successful ✅");
+
+    window.location.href = "hotel.html";
+}
+</script>
+
+</body>
+</html>

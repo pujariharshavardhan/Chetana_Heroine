@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Wellness Journey - Lumeria</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family: 'Segoe UI';
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+}
+
+/* Container */
+.container{
+    max-width:500px;
+    margin:auto;
+    padding:30px;
+}
+
+/* Title */
+h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+/* Section */
+.section{
+    margin-bottom:30px;
+}
+
+/* Cards */
+.card{
+    background: rgba(255,255,255,0.1);
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:15px;
+    backdrop-filter: blur(10px);
+}
+
+/* Checkbox */
+label{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+}
+
+/* Button */
+button{
+    width:100%;
+    padding:15px;
+    background:gold;
+    border:none;
+    font-weight:bold;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#ffd700;
+}
+
+/* Form */
+input{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border-radius:8px;
+    border:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌿 Wellness Journey Registration</h1>
+
+<p style="text-align:center;">
+Select your experiences for a peaceful and rejuvenating stay
+</p>
+
+<!-- 🧘 Mind -->
+<div class="section">
+<h2>🧘 Mind & Spirit</h2>
+
+<div class="card">
+<label>
+Sound Bath (₹2000)
+<input type="checkbox" value="Sound Bath" data-price="2000">
+</label>
+<p>60 min healing sound meditation</p>
+</div>
+
+<div class="card">
+<label>
+Forest Bathing (₹3000)
+<input type="checkbox" value="Forest Bathing" data-price="3000">
+</label>
+<p>90 min nature therapy</p>
+</div>
+
+</div>
+
+<!-- ⚡ Recovery -->
+<div class="section">
+<h2>⚡ Advanced Recovery</h2>
+
+<div class="card">
+<label>
+Thermal Suite (₹2500)
+<input type="checkbox" value="Thermal Suite" data-price="2500">
+</label>
+</div>
+
+<div class="card">
+<label>
+Bio-Hacking Circuit (₹3500)
+<input type="checkbox" value="Bio-Hacking Circuit" data-price="3500">
+</label>
+</div>
+
+</div>
+
+<!-- 🌙 Restoration -->
+<div class="section">
+<h2>🌙 Restoration</h2>
+
+<div class="card">
+<label>
+Sleep Ritual (₹4000)
+<input type="checkbox" value="Sleep Ritual" data-price="4000">
+</label>
+</div>
+
+</div>
+
+<!-- Guest Details -->
+<div class="section">
+<h2>📋 Guest Details</h2>
+
+<input type="text" id="guestName" placeholder="Enter your name">
+<input type="date" id="wellnessDate">
+
+</div>
+
+<button onclick="confirmWellness()">Confirm Wellness Booking</button>
+
+</div>
+
+<script>
+
+function confirmWellness(){
+
+    let selected = [];
+    let total = 0;
+
+    document.querySelectorAll("input[type=checkbox]:checked")
+    .forEach(cb=>{
+        selected.push(cb.value);
+        total += parseInt(cb.dataset.price);
+    });
+
+    let name = document.getElementById("guestName").value;
+    let date = document.getElementById("wellnessDate").value;
+
+    if(!name || selected.length === 0){
+        alert("Please fill all details!");
+        return;
+    }
+
+    let wellnessBooking = {
+        name,
+        date,
+        services:selected,
+        total
+    };
+
+    localStorage.setItem("wellness", JSON.stringify(wellnessBooking));
+
+    window.location.href = "wellness-confirm.html";
+}
+
+</script>
+
+</body>
+</html>
